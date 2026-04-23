@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: black;
+  background:aliceblue;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-nav {
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  width: 95%;
+  max-width: 1180px;
+  margin: 12px auto;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 999px;
+}
+
+.store-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 25px;
+  color:black;
+
+}
+
+.store-brand .brand-logo {
+  width: 35px;
+  aspect-ratio: 1/1;
+  display: block;
+  border-radius: 10px;
+  
+}
+
+
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: steelblue;
+  background: lightcyan;
+}
+
+main {
+  flex: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 8px 16px 30px;
+}
+
+.catalog-block {
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px lightgray;
+  padding: 24px;
+}
+
+.block-title {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.block-title h2 {
+  font-family: "Orbitron", sans-serif;
+  color: black;
+  margin-bottom: 6px;
+  font-size: 25px;
+}
+
+.block-title p {
+  color: slategray;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.tile-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  box-shadow: 0 8px 18px lightgray;
+}
+
+.tile-card:hover {
+  background: whitesmoke;
+}
+
+.tile-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.tile-card h3 {
+
+  font-size: 20px;
+  text-align: center;
+  padding: 14px 10px;
+  color: black;
+}
+
+.page-footer {
+  max-width: 1180px;
+  margin: 20px auto 0;
+  padding: 18px 16px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: slategray;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: blue;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+
