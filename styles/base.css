@@ -6,7 +6,7 @@
 
 body {
   color: black;
-  background:aliceblue;
+  background: aliceblue;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -35,19 +35,15 @@ body {
   text-decoration: none;
   font-weight: 800;
   font-size: 25px;
-  color:black;
-
+  color: black;
 }
 
 .store-brand .brand-logo {
   width: 35px;
-  aspect-ratio: 1/1;
+  height: 35px;
   display: block;
   border-radius: 10px;
-  
 }
-
-
 
 .nav-links {
   display: flex;
@@ -61,7 +57,6 @@ body {
   font-weight: 600;
   padding: 8px 12px;
   border-radius: 999px;
-  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .nav-links a:hover {
@@ -80,7 +75,6 @@ main {
   background: white;
   border: 1px solid lightgray;
   border-radius: 20px;
-  box-shadow: 0 12px 30px lightgray;
   padding: 24px;
 }
 
@@ -90,7 +84,6 @@ main {
 }
 
 .block-title h2 {
-  font-family: "Orbitron", sans-serif;
   color: black;
   margin-bottom: 6px;
   font-size: 25px;
@@ -111,7 +104,6 @@ main {
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid lightgray;
-  box-shadow: 0 8px 18px lightgray;
 }
 
 .tile-card:hover {
@@ -126,7 +118,6 @@ main {
 }
 
 .tile-card h3 {
-
   font-size: 20px;
   text-align: center;
   padding: 14px 10px;
@@ -156,5 +147,27 @@ main {
   font-weight: 600;
 }
 
+.cart-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
 
+.cart-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
 
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}

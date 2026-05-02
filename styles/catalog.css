@@ -5,16 +5,8 @@
   font-weight: 700;
 }
 
-#desktopsContainer .product-grid,
-#laptopsContainer .product-grid,
-#monitorsContainer .product-grid {
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
-
 .product-row {
   width: 100%;
-  max-width: none;
   margin: 0;
   overflow: hidden;
   display: grid;
@@ -58,7 +50,6 @@
 }
 
 .product-price {
-  white-space: nowrap;
   font-weight: 800;
   color: navy;
   background: lightblue;
@@ -81,7 +72,9 @@
 }
 
 .product-tag,
-.availability-tag {
+.availability-tag,
+.in-stock,
+.out-of-stock {
   font-size: 13px;
   color: midnightblue;
   background: aliceblue;
@@ -91,6 +84,7 @@
   font-weight: 700;
 }
 
+.out-of-stock,
 .availability-tag.soldout {
   background: mistyrose;
   color: brown;
@@ -100,7 +94,7 @@
 .product-specs {
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 8px 14px;
 }
 
@@ -117,25 +111,29 @@
   font-size: 14px;
 }
 
-@media (max-width: 900px) {
-  .product-row {
-    grid-template-columns: 1fr;
-  }
-
-  .product-media {
-    border-right: 0;
-    border-bottom: 1px solid lightgray;
-  }
-
-  .product-media img {
-    min-height: 220px;
-    max-height: 360px;
-  }
+/* Override product-grid for rows to be single column */
+.product-grid {
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
-@media (max-width: 640px) {
-  .product-specs {
-    grid-template-columns: 1fr;
-  }
+/* Add to Cart Button */
+.add-to-cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: midnightblue;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: auto;
 }
 
+.add-to-cart-btn:hover {
+  background-color: navy;
+}

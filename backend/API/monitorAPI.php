@@ -1,9 +1,9 @@
 <?php
-require_once "../DAO/DBConnection.php";
-require_once "../DAO/getItems.php";
+require_once __dir__ . "/../DAO/DBConnection.php";
+require_once __dir__ . "/../DAO/getItems.php";
 
-$pdo=DBConnection();
-$monitors=getMonitors($pdo);
-
-header("Content-Type: application/json");
-echo json_encode($monitors);
+function getAllMonitors(){
+    $conn=DBConnection();
+    $monitors=getAll($conn, "monitor");
+    return $monitors;
+}

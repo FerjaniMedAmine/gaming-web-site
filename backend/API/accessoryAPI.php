@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../DAO/DBConnection.php';
 require_once __DIR__ . '/../DAO/getItems.php';
-function getAllDesktops(){
+function getAllAccessories(){
      $conn= DBConnection();
-     $desktops=getAll($conn, "desktop");
-     return $desktops;
+     $accessories=getAll($conn, "accessory");
+     return $accessories;
 }
