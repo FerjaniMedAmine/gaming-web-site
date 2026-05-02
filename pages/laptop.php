@@ -24,15 +24,64 @@
 </header>
 
 <main id="main">
-  <section class="catalog-block">
-    <div class="block-title">
-      <h2>laptops</h2>
-    </div>
+  <div class="catalog-wrapper">
+    <!-- Filter Panel -->
+    <aside class="filter-panel">
+        <h3>Filters</h3>
+        <form method="GET" action="laptop.php">
+          <div class="filter-group">
+            <label for="brand">Brand</label>
+            <select name="brand" id="brand">
+              <option value="">All Brands</option>
+              <option value="ASUS">ASUS</option>
+              <option value="Lenovo">Lenovo</option>
+              <option value="HP">HP</option>
+              <option value="MSI">MSI</option>
+              <option value="Acer">Acer</option>
+            </select>
+          </div>
 
-    <div id="accessoriesContainer">
+          <div class="filter-group">
+            <label for="min_price">Min Price (DT)</label>
+            <input type="number" name="price_min" id="min_price" placeholder="0" min="0">
+          </div>
+
+          <div class="filter-group">
+            <label for="max_price">Max Price (DT)</label>
+            <input type="number" name="price_max" id="max_price" placeholder="9999" min="0">
+          </div>
+
+          <button type="submit" class="filter-btn">Apply Filters</button>
+        </form>
+    </aside>
+
+    <!-- Products Section -->
+    <section class="catalog-block">
+      <div class="block-title">
+        <h2>laptops</h2>
+      </div>
+
+      <div class="products-section">
         <?php
           include_once "../backend/API/LaptopAPI.php";
-          $laptops = getAllLaptops();
+          $filters = array();
+          if (!empty($_GET['brand'])) {
+            $filters['brand'] = $_GET['brand'];
+          }
+          $laptops = getAllLaptops($filters);
+          
+          // Client-side price filtering
+          if (!empty($_GET['price_min']) || !empty($_GET['price_max'])) {
+            $laptops = array_filter($laptops, function($item) {
+              if (!empty($_GET['price_min']) && $item['price'] < $_GET['price_min']) {
+                return false;
+              }
+              if (!empty($_GET['price_max']) && $item['price'] > $_GET['price_max']) {
+                return false;
+              }
+              return true;
+            });
+          }
           echo "<div class='product-grid'>";
           foreach($laptops as $laptop){
             $stockClass = $laptop['stock'] > 0 ? 'in-stock' : 'out-of-stock';
@@ -66,10 +115,10 @@
           }
           echo "</div>";
         ?>
-
       </div>
     </section>
-  </main>
+  </div>
+</main>
 
  <footer class="page-footer" >
     <p>2026 LevelUpZone. All rights reserved.</p>

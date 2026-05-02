@@ -24,20 +24,76 @@
 </header>
 
 <main id="main">
-  <section class="catalog-block">
-    <div class="block-title">
-      <h2>desktops</h2>
-    </div>
+  <div class="catalog-wrapper">
+    <!-- Filter Panel -->
+    <aside class="filter-panel">
+        <h3>Filters</h3>
+        <form method="GET" action="desktop.php">
+          <div class="filter-group">
+            <label for="min_price">Min Price (DT)</label>
+            <input type="number" name="price_min" id="min_price" placeholder="0" min="0">
+          </div>
 
-    <div id="accessoriesContainer">
+          <div class="filter-group">
+            <label for="max_price">Max Price (DT)</label>
+            <input type="number" name="price_max" id="max_price" placeholder="9999" min="0">
+          </div>
+
+          <div class="filter-group">
+            <label for="stock">Stock Status</label>
+            <select name="stock_status" id="stock">
+              <option value="">All Items</option>
+              <option value="in-stock">In Stock Only</option>
+              <option value="out-of-stock">Out of Stock</option>
+            </select>
+          </div>
+
+          <button type="submit" class="filter-btn">Apply Filters</button>
+        </form>
+    </aside>
+
+    <!-- Products Section -->
+    <section class="catalog-block">
+      <div class="block-title">
+        <h2>desktops</h2>
+      </div>
+
+      <div class="products-section">
 <?php
   include_once "../backend/API/desktopAPI.php";
 
   $desktops = getAllDesktops();
 
+  // Client-side filtering
+  $filtered_desktops = $desktops;
+  
+  if (!empty($_GET['price_min']) || !empty($_GET['price_max'])) {
+    $filtered_desktops = array_filter($filtered_desktops, function($item) {
+      if (!empty($_GET['price_min']) && $item['price'] < $_GET['price_min']) {
+        return false;
+      }
+      if (!empty($_GET['price_max']) && $item['price'] > $_GET['price_max']) {
+        return false;
+      }
+      return true;
+    });
+  }
+  
+  if (!empty($_GET['stock_status'])) {
+    $filtered_desktops = array_filter($filtered_desktops, function($item) {
+      if ($_GET['stock_status'] === 'in-stock' && $item['stock'] <= 0) {
+        return false;
+      }
+      if ($_GET['stock_status'] === 'out-of-stock' && $item['stock'] > 0) {
+        return false;
+      }
+      return true;
+    });
+  }
+
   echo "<div class='product-grid'>";
 
-  foreach ($desktops as $desktop) {
+  foreach ($filtered_desktops as $desktop) {
     $stockClass = $desktop['stock'] > 0 ? 'in-stock' : 'out-of-stock';
     $stockLabel = $desktop['stock'] > 0 ? 'In stock' : 'Out of stock';
 
@@ -78,7 +134,8 @@
 ?>
       </div>
     </section>
-  </main>
+  </div>
+</main>
 
 
 
