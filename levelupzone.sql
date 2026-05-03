@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2026 at 05:24 PM
+-- Generation Time: May 03, 2026 at 05:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,12 +44,12 @@ CREATE TABLE `accessory` (
 --
 
 INSERT INTO `accessory` (`id`, `categorie`, `name`, `description`, `price`, `stock`, `imgPath`) VALUES
-(1, 'headset', 'HyperX Cloud 3', 'Gaming headset HyperX Cloud 3', 450, 3, '/projetWeb/backend/images/accessories/ac3.jpg'),
-(2, 'headset', 'Logitech G Pro X', 'Logitech G Pro X gaming headset', 600, 5, '/projetWeb/backend/images/accessories/ac4.jpg'),
-(3, 'mouse', 'Logitech Superlight 2', 'Wireless gaming mouse Superlight 2', 550, 2, '/projetWeb/backend/images/accessories/ac1.jpg'),
-(4, 'mouse', 'Endgame Gear XM1r', 'High precision gaming mouse XM1r', 320, 5, '/projetWeb/backend/images/accessories/ac2.jpg'),
-(5, 'keyboard', 'Wooting 80HE', 'Analog mechanical gaming keyboard', 900, 5, '/projetWeb/backend/images/accessories/ac6.jpg'),
-(6, 'keyboard', 'Royal Kludge M75', 'Mechanical keyboard RK M75', 280, 5, '/projetWeb/backend/images/accessories/ac5.jpg');
+(1, 'headset', 'HyperX Cloud 3', 'Gaming headset HyperX Cloud 3', 450, 3, '/LevelUpZone/backend/images/accessories/ac3.jpg'),
+(2, 'headset', 'Logitech G Pro X', 'Logitech G Pro X gaming headset', 600, 5, '/LevelUpZone/backend/images/accessories/ac4.jpg'),
+(3, 'mouse', 'Logitech Superlight 2', 'Wireless gaming mouse Superlight 2', 550, 2, '/LevelUpZone/backend/images/accessories/ac1.jpg'),
+(4, 'mouse', 'Endgame Gear XM1r', 'High precision gaming mouse XM1r', 320, 5, '/LevelUpZone/backend/images/accessories/ac2.jpg'),
+(5, 'keyboard', 'Wooting 80HE', 'Analog mechanical gaming keyboard', 900, 5, '/LevelUpZone/backend/images/accessories/ac6.jpg'),
+(6, 'keyboard', 'Royal Kludge M75', 'Mechanical keyboard RK M75', 280, 5, '/LevelUpZone/backend/images/accessories/ac5.jpg');
 
 -- --------------------------------------------------------
 
@@ -72,11 +72,11 @@ CREATE TABLE `component` (
 --
 
 INSERT INTO `component` (`id`, `categorie`, `name`, `description`, `price`, `stock`, `imgPath`) VALUES
-(1, 'cpu', 'Ryzen 5 9500F', 'AMD Ryzen 5 9500F gaming processor', 750, 5, '/projetWeb/backend/images/components/cp1.jpg'),
-(2, 'cpu', 'Ryzen 7 9700X3D', 'AMD Ryzen 7 9700X3D high-end gaming CPU', 1350, 3, '/projetWeb/backend/images/components/cp2.jpg'),
-(3, 'gpu', 'RTX 4070 Super', 'NVIDIA RTX 4070 Super graphics card', 2200, 4, '/projetWeb/backend/images/components/cp3.jpg'),
-(4, 'ram', 'Corsair Vengeance 32GB', '32GB DDR5 gaming RAM', 420, 6, '/projetWeb/backend/images/components/cp4.jpg'),
-(5, 'storage', 'Samsung 990 Pro 1TB', '1TB NVMe SSD', 380, 5, '/projetWeb/backend/images/components/cp5.jpg');
+(1, 'cpu', 'Ryzen 5 9500F', 'AMD Ryzen 5 9500F gaming processor', 750, 5, '/LevelUpZone/backend/images/components/cp1.jpg'),
+(2, 'cpu', 'Ryzen 7 9700X3D', 'AMD Ryzen 7 9700X3D high-end gaming CPU', 1350, 3, '/LevelUpZone/backend/images/components/cp2.jpg'),
+(3, 'gpu', 'RTX 4070 Super', 'NVIDIA RTX 4070 Super graphics card', 2200, 4, '/LevelUpZone/backend/images/components/cp3.jpg'),
+(4, 'ram', 'Corsair Vengeance 32GB', '32GB DDR5 gaming RAM', 420, 6, '/LevelUpZone/backend/images/components/cp4.jpg'),
+(5, 'storage', 'Samsung 990 Pro 1TB', '1TB NVMe SSD', 380, 5, '/LevelUpZone/backend/images/components/cp5.jpg');
 
 -- --------------------------------------------------------
 
@@ -105,11 +105,11 @@ CREATE TABLE `desktop` (
 --
 
 INSERT INTO `desktop` (`id`, `cpu`, `gpu`, `ram`, `storages`, `motherboard`, `psu`, `cooler`, `tower`, `description`, `stock`, `price`, `imgPath`) VALUES
-(1, 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', '512GB NVMe SSD', 'MSI PRO B660M-A', 'Corsair CV550 550W', 'DeepCool AK400', 'NZXT H510', 'Mid-range gaming PC, great for 1080p gaming', 8, 2199.00, '/projetWeb/backend/images/desktops/dt1.jpg'),
-(2, 'AMD Ryzen 5 5600X', 'RX 6650 XT 8GB', '16GB DDR4 3200MHz', '512GB NVMe SSD', 'Gigabyte B550M DS3H', 'EVGA 600W BR', 'AMD Wraith Stealth', 'Cooler Master Q300L', 'AMD budget gaming build, excellent price/performance', 6, 1899.00, '/projetWeb/backend/images/desktops/dt2.jpg'),
-(3, 'Intel Core i7-13700F', 'RTX 4070 12GB', '32GB DDR4 3600MHz', '1TB NVMe SSD', 'ASUS PRIME Z690-P', 'Seasonic Focus GX-750', 'Noctua NH-D15', 'Fractal Design Pop Air', 'High-end gaming rig, handles 1440p with ease', 4, 4299.00, '/projetWeb/backend/images/desktops/dt3.jpg'),
-(4, 'Intel Core i3-12100F', 'GTX 1660 Super 6GB', '8GB DDR4 2666MHz', '256GB NVMe SSD', 'MSI H610M-E DDR4', 'Thermaltake Smart 500W', 'Intel Stock Cooler', 'Zalman S2 TF', 'Entry-level build for casual gaming and daily use', 12, 1299.00, '/projetWeb/backend/images/desktops/dt4.jpg'),
-(5, 'AMD Ryzen 9 7900X', 'RTX 4080 16GB', '32GB DDR5 5600MHz', '2TB NVMe SSD', 'ASUS ROG Crosshair X670E', 'Corsair RM1000x 1000W', 'NZXT Kraken X63 280mm', 'Lian Li PC-O11 Dynamic', 'Premium workstation and gaming beast', 2, 7499.00, '/projetWeb/backend/images/desktops/dt5.jpg');
+(1, 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', '512GB NVMe SSD', 'MSI PRO B660M-A', 'Corsair CV550 550W', 'DeepCool AK400', 'NZXT H510', 'Mid-range gaming PC, great for 1080p gaming', 8, 2199.00, '/LevelUpZone/backend/images/desktops/dt1.jpg'),
+(2, 'AMD Ryzen 5 5600X', 'RX 6650 XT 8GB', '16GB DDR4 3200MHz', '512GB NVMe SSD', 'Gigabyte B550M DS3H', 'EVGA 600W BR', 'AMD Wraith Stealth', 'Cooler Master Q300L', 'AMD budget gaming build, excellent price/performance', 6, 1899.00, '/LevelUpZone/backend/images/desktops/dt2.jpg'),
+(3, 'Intel Core i7-13700F', 'RTX 4070 12GB', '32GB DDR4 3600MHz', '1TB NVMe SSD', 'ASUS PRIME Z690-P', 'Seasonic Focus GX-750', 'Noctua NH-D15', 'Fractal Design Pop Air', 'High-end gaming rig, handles 1440p with ease', 4, 4299.00, '/LevelUpZone/backend/images/desktops/dt3.jpg'),
+(4, 'Intel Core i3-12100F', 'GTX 1660 Super 6GB', '8GB DDR4 2666MHz', '256GB NVMe SSD', 'MSI H610M-E DDR4', 'Thermaltake Smart 500W', 'Intel Stock Cooler', 'Zalman S2 TF', 'Entry-level build for casual gaming and daily use', 12, 1299.00, '/LevelUpZone/backend/images/desktops/dt4.jpg'),
+(5, 'AMD Ryzen 9 7900X', 'RTX 4080 16GB', '32GB DDR5 5600MHz', '2TB NVMe SSD', 'ASUS ROG Crosshair X670E', 'Corsair RM1000x 1000W', 'NZXT Kraken X63 280mm', 'Lian Li PC-O11 Dynamic', 'Premium workstation and gaming beast', 2, 7499.00, '/LevelUpZone/backend/images/desktops/dt5.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,11 +129,11 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`id`, `name`, `price`, `imgPath`) VALUES
-(1, 'PlayerUnknown\'s Battlegrounds', 36.00, '/projetWeb/backend/images/games/gm1.jpg'),
-(2, 'Counter-Strike 2', 48.00, '/projetWeb/backend/images/games/gm2.jpg'),
-(3, 'R.E.P.O', 15.00, '/projetWeb/backend/images/games/gm3.jpg'),
-(4, 'Cyberpunk 2077', 90.00, '/projetWeb/backend/images/games/gm4.jpg'),
-(5, 'Elden Ring', 120.00, '/projetWeb/backend/images/games/gm5.jpg');
+(1, 'PlayerUnknown\'s Battlegrounds', 36.00, '/LevelUpZone/backend/images/games/gm1.jpg'),
+(2, 'Counter-Strike 2', 48.00, '/LevelUpZone/backend/images/games/gm2.jpg'),
+(3, 'R.E.P.O', 15.00, '/LevelUpZone/backend/images/games/gm3.jpg'),
+(4, 'Cyberpunk 2077', 90.00, '/LevelUpZone/backend/images/games/gm4.jpg'),
+(5, 'Elden Ring', 120.00, '/LevelUpZone/backend/images/games/gm5.jpg');
 
 -- --------------------------------------------------------
 
@@ -165,11 +165,11 @@ CREATE TABLE `laptop` (
 --
 
 INSERT INTO `laptop` (`id`, `brand`, `model`, `cpu`, `gpu`, `ram`, `storages`, `size`, `keyboard`, `camera`, `ports`, `charger`, `description`, `stock`, `price`, `imgPath`) VALUES
-(1, 'ASUS', 'ROG Strix G15', 'AMD Ryzen 7 6800H', 'RTX 3070 Ti 8GB', '16GB DDR5 4800MHz', '1TB NVMe SSD', '15.6\"', 'QWERTY', '720p HD', 'USB-A x3, USB-C, HDMI 2.0, RJ45', 240, 'High-performance gaming laptop with 165Hz display', 5, 3899.00, '/projetWeb/backend/images/laptops/lp1.jpg'),
-(2, 'Lenovo', 'IdeaPad Gaming 3', 'Intel Core i5-12500H', 'RTX 3050 4GB', '8GB DDR4 3200MHz', '512GB NVMe SSD', '15.6\"', 'AZERTY', '720p HD', 'USB-A x2, USB-C, HDMI 1.4', 65, 'Budget-friendly gaming laptop for 1080p gaming', 9, 1999.00, '/projetWeb/backend/images/laptops/lp2.jpg'),
-(3, 'HP', 'Victus 16', 'Intel Core i7-12700H', 'RTX 3060 6GB', '16GB DDR4 3200MHz', '512GB NVMe SSD + 1TB HDD', '16.1\"', 'AZERTY', '1080p FHD', 'USB-A x3, USB-C, HDMI 2.1, SD Card', 135, 'Versatile gaming and productivity laptop', 7, 2799.00, '/projetWeb/backend/images/laptops/lp3.jpg'),
-(4, 'MSI', 'Titan GT77', 'Intel Core i9-12900HX', 'RTX 3080 Ti 16GB', '64GB DDR5 4800MHz', '2TB NVMe SSD', '17.3\"', 'QWERTY', '1080p FHD', 'USB-A x3, USB-C x2, HDMI 2.1, Thunderbolt 4, SD Card', 330, 'Absolute desktop-replacement beast, no compromises', 2, 9999.00, '/projetWeb/backend/images/laptops/lp4.jpg'),
-(5, 'Acer', 'Nitro 5', 'AMD Ryzen 5 6600H', 'RX 6600M 8GB', '16GB DDR5 4800MHz', '512GB NVMe SSD', '15.6\"', 'AZERTY', '720p HD', 'USB-A x2, USB-C, HDMI 2.0, RJ45', 135, 'Reliable AMD gaming laptop at an accessible price', 11, 1749.00, '/projetWeb/backend/images/laptops/lp5.jpg');
+(1, 'ASUS', 'ROG Strix G15', 'AMD Ryzen 7 6800H', 'RTX 3070 Ti 8GB', '16GB DDR5 4800MHz', '1TB NVMe SSD', '15.6\"', 'QWERTY', '720p HD', 'USB-A x3, USB-C, HDMI 2.0, RJ45', 240, 'High-performance gaming laptop with 165Hz display', 5, 3899.00, '/LevelUpZone/backend/images/laptops/lp1.jpg'),
+(2, 'Lenovo', 'IdeaPad Gaming 3', 'Intel Core i5-12500H', 'RTX 3050 4GB', '8GB DDR4 3200MHz', '512GB NVMe SSD', '15.6\"', 'AZERTY', '720p HD', 'USB-A x2, USB-C, HDMI 1.4', 65, 'Budget-friendly gaming laptop for 1080p gaming', 9, 1999.00, '/LevelUpZone/backend/images/laptops/lp2.jpg'),
+(3, 'HP', 'Victus 16', 'Intel Core i7-12700H', 'RTX 3060 6GB', '16GB DDR4 3200MHz', '512GB NVMe SSD + 1TB HDD', '16.1\"', 'AZERTY', '1080p FHD', 'USB-A x3, USB-C, HDMI 2.1, SD Card', 135, 'Versatile gaming and productivity laptop', 7, 2799.00, '/LevelUpZone/backend/images/laptops/lp3.jpg'),
+(4, 'MSI', 'Titan GT77', 'Intel Core i9-12900HX', 'RTX 3080 Ti 16GB', '64GB DDR5 4800MHz', '2TB NVMe SSD', '17.3\"', 'QWERTY', '1080p FHD', 'USB-A x3, USB-C x2, HDMI 2.1, Thunderbolt 4, SD Card', 330, 'Absolute desktop-replacement beast, no compromises', 2, 9999.00, '/LevelUpZone/backend/images/laptops/lp4.jpg'),
+(5, 'Acer', 'Nitro 5', 'AMD Ryzen 5 6600H', 'RX 6600M 8GB', '16GB DDR5 4800MHz', '512GB NVMe SSD', '15.6\"', 'AZERTY', '720p HD', 'USB-A x2, USB-C, HDMI 2.0, RJ45', 135, 'Reliable AMD gaming laptop at an accessible price', 11, 1749.00, '/LevelUpZone/backend/images/laptops/lp5.jpg');
 
 -- --------------------------------------------------------
 
@@ -198,11 +198,31 @@ CREATE TABLE `monitor` (
 --
 
 INSERT INTO `monitor` (`id`, `brand`, `model`, `refreshRate`, `responseTime`, `panel`, `resolution`, `ports`, `size`, `description`, `stock`, `price`, `imgPath`) VALUES
-(1, 'Samsung', 'Odyssey G5', 165, 1, 'VA', '2560x1440', 'HDMI 2.0, DisplayPort 1.2', '27\"', 'Curved 1440p gaming monitor with excellent contrast ratio', 6, 899, '/projetWeb/backend/images/monitors/mn1.jpg'),
-(2, 'LG', 'UltraGear 27GP850', 180, 1, 'IPS', '2560x1440', 'HDMI 2.0 x2, DisplayPort 1.4, USB-A x2', '27\"', 'Fast IPS 1440p panel, great colors and response time for competitive gaming', 4, 1199, '/projetWeb/backend/images/monitors/mn2.jpg'),
-(3, 'AOC', 'C24G2AE', 165, 1, 'VA', '1920x1080', 'HDMI 1.4 x2, DisplayPort 1.2, VGA', '24\"', 'Budget curved 1080p gaming monitor, solid choice for entry-level setups', 10, 599, '/projetWeb/backend/images/monitors/mn3.jpg'),
-(4, 'ASUS', 'ROG Swift PG279QM', 240, 1, 'IPS', '2560x1440', 'HDMI 2.0, DisplayPort 1.4, USB-A x2, USB-C', '27\"', 'Premium 240Hz 1440p monitor for competitive and enthusiast gamers', 3, 2199, '/projetWeb/backend/images/monitors/mn4.jpg'),
-(5, 'MSI', 'Optix MAG274QRF', 165, 1, 'IPS', '2560x1440', 'HDMI 2.0 x2, DisplayPort 1.4, USB-A x3, USB-C', '27\"', 'Well-rounded 1440p IPS gaming monitor with USB hub and great build quality', 7, 1099, '/projetWeb/backend/images/monitors/mn5.jpg');
+(1, 'Samsung', 'Odyssey G5', 165, 1, 'VA', '2560x1440', 'HDMI 2.0, DisplayPort 1.2', '27\"', 'Curved 1440p gaming monitor with excellent contrast ratio', 6, 899, '/levelupzone/backend/images/monitors/mn1.jpg'),
+(2, 'LG', 'UltraGear 27GP850', 180, 1, 'IPS', '2560x1440', 'HDMI 2.0 x2, DisplayPort 1.4, USB-A x2', '27\"', 'Fast IPS 1440p panel, great colors and response time for competitive gaming', 4, 1199, '/levelupzone/backend/images/monitors/mn2.jpg'),
+(3, 'AOC', 'C24G2AE', 165, 1, 'VA', '1920x1080', 'HDMI 1.4 x2, DisplayPort 1.2, VGA', '24\"', 'Budget curved 1080p gaming monitor, solid choice for entry-level setups', 10, 599, '/levelupzone/backend/images/monitors/mn3.jpg'),
+(4, 'ASUS', 'ROG Swift PG279QM', 240, 1, 'IPS', '2560x1440', 'HDMI 2.0, DisplayPort 1.4, USB-A x2, USB-C', '27\"', 'Premium 240Hz 1440p monitor for competitive and enthusiast gamers', 3, 2199, '/levelupzone/backend/images/monitors/mn4.jpg'),
+(5, 'MSI', 'Optix MAG274QRF', 165, 1, 'IPS', '2560x1440', 'HDMI 2.0 x2, DisplayPort 1.4, USB-A x3, USB-C', '27\"', 'Well-rounded 1440p IPS gaming monitor with USB hub and great build quality', 7, 1099, '/levelupzone/backend/images/monitors/mn5.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `password` varchar(40) DEFAULT NULL,
+  `role` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `role`) VALUES
+(1, 'ferjabeast@gmail.com', 'admin', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -245,6 +265,12 @@ ALTER TABLE `monitor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -283,6 +309,12 @@ ALTER TABLE `laptop`
 --
 ALTER TABLE `monitor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Database: `phpmyadmin`
 --
@@ -439,7 +471,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"levelupzone\",\"table\":\"accessory\"},{\"db\":\"chaieb_info\",\"table\":\"desktop\"},{\"db\":\"chaieb_info\",\"table\":\"component\"},{\"db\":\"chaieb_info\",\"table\":\"accessory\"},{\"db\":\"chaieb_info\",\"table\":\"game\"},{\"db\":\"chaieb_info\",\"table\":\"laptop\"},{\"db\":\"chaieb_info\",\"table\":\"monitor\"},{\"db\":\"chiebinfo\",\"table\":\"accessory\"},{\"db\":\"rent_sell_platform\",\"table\":\"properties\"},{\"db\":\"rent_sell_platform\",\"table\":\"users\"}]');
+('root', '[{\"db\":\"levelupzone\",\"table\":\"users\"},{\"db\":\"levelupzone\",\"table\":\"laptop\"},{\"db\":\"levelupzone\",\"table\":\"game\"},{\"db\":\"levelupzone\",\"table\":\"desktop\"},{\"db\":\"levelupzone\",\"table\":\"component\"},{\"db\":\"levelupzone\",\"table\":\"accessory\"},{\"db\":\"chaieb_info\",\"table\":\"desktop\"},{\"db\":\"chaieb_info\",\"table\":\"component\"},{\"db\":\"chaieb_info\",\"table\":\"accessory\"},{\"db\":\"chaieb_info\",\"table\":\"game\"}]');
 
 -- --------------------------------------------------------
 
@@ -546,7 +578,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2026-05-02 15:24:18', '{\"Console\\/Mode\":\"show\"}');
+('root', '2026-05-03 15:55:54', '{\"Console\\/Mode\":\"show\",\"NavigationWidth\":0}');
 
 -- --------------------------------------------------------
 
