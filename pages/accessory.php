@@ -32,21 +32,25 @@
           <div class="filter-group">
             <label for="categorie">Category</label>
             <select name="categorie" id="categorie">
-              <option value="">All Categories</option>
-              <option value="headset">Headset</option>
-              <option value="mouse">Mouse</option>
-              <option value="keyboard">Keyboard</option>
+              <option value="" <?php echo (($_GET['categorie'] ?? '') === '') ? 'selected' : ''; ?>>All Categories</option>
+              <option value="headset" <?php echo (($_GET['categorie'] ?? '') === 'headset') ? 'selected' : ''; ?>>Headset</option>
+              <option value="mouse" <?php echo (($_GET['categorie'] ?? '') === 'mouse') ? 'selected' : ''; ?>>Mouse</option>
+              <option value="keyboard" <?php echo (($_GET['categorie'] ?? '') === 'keyboard') ? 'selected' : ''; ?>>Keyboard</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="min_price">Min Price (DT)</label>
-            <input type="number" name="price_min" id="min_price" placeholder="0" min="0">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Accessory name" value="<?php echo $_GET['name'] ?? ''; ?>">
           </div>
 
           <div class="filter-group">
-            <label for="max_price">Max Price (DT)</label>
-            <input type="number" name="price_max" id="max_price" placeholder="9999" min="0">
+            <label for="stock">Stock</label>
+            <select name="stock" id="stock">
+              <option value="" <?php echo (($_GET['stock'] ?? '') === '') ? 'selected' : ''; ?>>All</option>
+              <option value=">0" <?php echo (($_GET['stock'] ?? '') === '>0') ? 'selected' : ''; ?>>In stock</option>
+              <option value="=0" <?php echo (($_GET['stock'] ?? '') === '=0') ? 'selected' : ''; ?>>Out of stock</option>
+            </select>
           </div>
 
           <button type="submit" class="filter-btn">Apply Filters</button>
@@ -63,42 +67,14 @@
 <?php
   include_once "../backend/API/accessoryAPI.php";
 
-  $filters = array();
-  
-  if (!empty($_GET['categorie'])) {
-    $filters['categorie'] = $_GET['categorie'];
-  }
-  
-  // Handle price filters by converting to appropriate SQL conditions
-  $price_filters = array();
-  if (!empty($_GET['price_min'])) {
-    $price_filters[] = "price >= " . $_GET['price_min'];
-  }
-  if (!empty($_GET['price_max'])) {
-    $price_filters[] = "price <= " . $_GET['price_max'];
-  }
 
-  $accessories = getAllAccessories($filters);
-  
-  // Client-side price filtering (simple approach)
-  if (!empty($price_filters)) {
-    $accessories = array_filter($accessories, function($item) use ($price_filters) {
-      $passes = true;
-      if (!empty($_GET['price_min']) && $item['price'] < $_GET['price_min']) {
-        $passes = false;
-      }
-      if (!empty($_GET['price_max']) && $item['price'] > $_GET['price_max']) {
-        $passes = false;
-      }
-      return $passes;
-    });
-  }
+  $accessories = getAllAccessories($_GET);
 
   echo "<div class='product-grid'>";
 
   foreach ($accessories as $accessory) {
     $stockClass = $accessory['stock'] > 0 ? 'in-stock' : 'out-of-stock';
-    $stockLabel = $accessory['stock'] > 0 ? 'In stock' : 'Out of stock';
+   
 
     echo "
     <article class='tile-card product-row'>
@@ -115,7 +91,7 @@
         <p class='product-description'>{$accessory['description']}</p>
 
         <div class='product-meta'>
-          <span class='{$stockClass}'>{$stockLabel}</span>
+          <span class='{$stockClass}'>{$stockClass}</span>
         </div>
         <button class='add-to-cart-btn'>Add to Cart</button>
       </div>

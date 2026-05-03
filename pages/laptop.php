@@ -31,24 +31,41 @@
         <form method="GET" action="laptop.php">
           <div class="filter-group">
             <label for="brand">Brand</label>
-            <select name="brand" id="brand">
-              <option value="">All Brands</option>
-              <option value="ASUS">ASUS</option>
-              <option value="Lenovo">Lenovo</option>
-              <option value="HP">HP</option>
-              <option value="MSI">MSI</option>
-              <option value="Acer">Acer</option>
+            <input type="text" name="brand" id="brand" placeholder="Brand name" value="<?php echo $_GET['brand'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="model">Model</label>
+            <input type="text" name="model" id="model" placeholder="Laptop model" value="<?php echo $_GET['model'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="cpu">CPU</label>
+            <input type="text" name="cpu" id="cpu" placeholder="CPU model" value="<?php echo $_GET['cpu'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="gpu">GPU</label>
+            <input type="text" name="gpu" id="gpu" placeholder="GPU model" value="<?php echo $_GET['gpu'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="keyboard">Keyboard</label>
+            <input type="text" name="keyboard" id="keyboard" placeholder="Keyboard layout" value="<?php echo $_GET['keyboard'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="size">Screen Size</label>
+            <input type="text" name="size" id="size" placeholder='15.6"' value="<?php echo $_GET['size'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="stock">Stock</label>
+            <select name="stock" id="stock">
+              <option value="" <?php echo (($_GET['stock'] ?? '') === '') ? 'selected' : ''; ?>>All</option>
+              <option value=">0" <?php echo (($_GET['stock'] ?? '') === '>0') ? 'selected' : ''; ?>>In stock</option>
+              <option value="=0" <?php echo (($_GET['stock'] ?? '') === '=0') ? 'selected' : ''; ?>>Out of stock</option>
             </select>
-          </div>
-
-          <div class="filter-group">
-            <label for="min_price">Min Price (DT)</label>
-            <input type="number" name="price_min" id="min_price" placeholder="0" min="0">
-          </div>
-
-          <div class="filter-group">
-            <label for="max_price">Max Price (DT)</label>
-            <input type="number" name="price_max" id="max_price" placeholder="9999" min="0">
           </div>
 
           <button type="submit" class="filter-btn">Apply Filters</button>
@@ -64,28 +81,12 @@
       <div class="products-section">
         <?php
           include_once "../backend/API/LaptopAPI.php";
-          $filters = array();
-          if (!empty($_GET['brand'])) {
-            $filters['brand'] = $_GET['brand'];
-          }
-          $laptops = getAllLaptops($filters);
           
-          // Client-side price filtering
-          if (!empty($_GET['price_min']) || !empty($_GET['price_max'])) {
-            $laptops = array_filter($laptops, function($item) {
-              if (!empty($_GET['price_min']) && $item['price'] < $_GET['price_min']) {
-                return false;
-              }
-              if (!empty($_GET['price_max']) && $item['price'] > $_GET['price_max']) {
-                return false;
-              }
-              return true;
-            });
-          }
+          $laptops = getAllLaptops($_GET);
           echo "<div class='product-grid'>";
           foreach($laptops as $laptop){
             $stockClass = $laptop['stock'] > 0 ? 'in-stock' : 'out-of-stock';
-            $stockLabel = $laptop['stock'] > 0 ? 'In Stock' : 'Out of Stock';
+          
             echo "<article class='tile-card product-row'>
                     <div class='product-media'>
                       <img src='".$laptop['imgPath']."'>
@@ -97,7 +98,7 @@
                       </div>
                       <div class='product-meta'>
                         <p class='product-description'>".$laptop['description']."</p>
-                        <span class='".$stockClass."'>".$stockLabel."</span>
+                        <span class='".$stockClass."'>".$stockClass."</span>
                       </div>
                       <dl class='product-specs'>
                         <div><dt>CPU</dt><dd>".$laptop['cpu']."</dd></div>

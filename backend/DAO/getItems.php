@@ -1,15 +1,21 @@
 <?php
+
 function buildConditions($filters) {
     $conditions = "1=1";
-    if (is_array($filters)) {
-        foreach ($filters as $key => $value) {
-            if (!empty($value)) {
-                $conditions .= " AND $key = '$value'";
+
+    foreach ($filters as $key => $value) {
+        if ($value !== '') {
+            if ($key === 'stock') {
+                $conditions .= " AND $key $value";
+            } else {
+                $conditions .= " AND $key LIKE '%$value%'";
             }
         }
     }
+
     return $conditions;
 }
+
 
 function getAll($conn, $category, $filters = array()) {
     $conditions = buildConditions($filters);

@@ -30,21 +30,31 @@
         <h3>Filters</h3>
         <form method="GET" action="desktop.php">
           <div class="filter-group">
-            <label for="min_price">Min Price (DT)</label>
-            <input type="number" name="price_min" id="min_price" placeholder="0" min="0">
+            <label for="cpu">CPU</label>
+            <input type="text" name="cpu" id="cpu" placeholder="CPU model" value="<?php echo $_GET['cpu'] ?? ''; ?>">
           </div>
 
           <div class="filter-group">
-            <label for="max_price">Max Price (DT)</label>
-            <input type="number" name="price_max" id="max_price" placeholder="9999" min="0">
+            <label for="gpu">GPU</label>
+            <input type="text" name="gpu" id="gpu" placeholder="GPU model" value="<?php echo $_GET['gpu'] ?? ''; ?>">
           </div>
 
           <div class="filter-group">
-            <label for="stock">Stock Status</label>
-            <select name="stock_status" id="stock">
-              <option value="">All Items</option>
-              <option value="in-stock">In Stock Only</option>
-              <option value="out-of-stock">Out of Stock</option>
+            <label for="ram">RAM</label>
+            <input type="text" name="ram" id="ram" placeholder="RAM spec" value="<?php echo $_GET['ram'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="motherboard">Motherboard</label>
+            <input type="text" name="motherboard" id="motherboard" placeholder="Motherboard model" value="<?php echo $_GET['motherboard'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="stock">Stock</label>
+            <select name="stock" id="stock">
+              <option value="" <?php echo (($_GET['stock'] ?? '') === '') ? 'selected' : ''; ?>>All</option>
+              <option value=">0" <?php echo (($_GET['stock'] ?? '') === '>0') ? 'selected' : ''; ?>>In stock</option>
+              <option value="=0" <?php echo (($_GET['stock'] ?? '') === '=0') ? 'selected' : ''; ?>>Out of stock</option>
             </select>
           </div>
 
@@ -62,40 +72,14 @@
 <?php
   include_once "../backend/API/desktopAPI.php";
 
-  $desktops = getAllDesktops();
-
-  // Client-side filtering
-  $filtered_desktops = $desktops;
-  
-  if (!empty($_GET['price_min']) || !empty($_GET['price_max'])) {
-    $filtered_desktops = array_filter($filtered_desktops, function($item) {
-      if (!empty($_GET['price_min']) && $item['price'] < $_GET['price_min']) {
-        return false;
-      }
-      if (!empty($_GET['price_max']) && $item['price'] > $_GET['price_max']) {
-        return false;
-      }
-      return true;
-    });
-  }
-  
-  if (!empty($_GET['stock_status'])) {
-    $filtered_desktops = array_filter($filtered_desktops, function($item) {
-      if ($_GET['stock_status'] === 'in-stock' && $item['stock'] <= 0) {
-        return false;
-      }
-      if ($_GET['stock_status'] === 'out-of-stock' && $item['stock'] > 0) {
-        return false;
-      }
-      return true;
-    });
-  }
+  $filters = $_GET;
+  $filtered_desktops = getAllDesktops($filters);
 
   echo "<div class='product-grid'>";
 
   foreach ($filtered_desktops as $desktop) {
     $stockClass = $desktop['stock'] > 0 ? 'in-stock' : 'out-of-stock';
-    $stockLabel = $desktop['stock'] > 0 ? 'In stock' : 'Out of stock';
+   
 
     echo "
     <article class='tile-card product-row'>
@@ -112,7 +96,7 @@
         <p class='product-description'>{$desktop['description']}</p>
 
         <div class='product-meta'>
-          <span class='{$stockClass}'>{$stockLabel}</span>
+          <span class='{$stockClass}'>{$stockClass}</span>
         </div>
 
         <dl class='product-specs'>

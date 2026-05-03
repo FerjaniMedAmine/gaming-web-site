@@ -31,35 +31,41 @@
         <form method="GET" action="monitor.php">
           <div class="filter-group">
             <label for="brand">Brand</label>
-            <select name="brand" id="brand">
-              <option value="">All Brands</option>
-              <option value="Samsung">Samsung</option>
-              <option value="LG">LG</option>
-              <option value="AOC">AOC</option>
-              <option value="ASUS">ASUS</option>
-              <option value="MSI">MSI</option>
+            <input type="text" name="brand" id="brand" placeholder="Brand name" value="<?php echo $_GET['brand'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="model">Model</label>
+            <input type="text" name="model" id="model" placeholder="Monitor model" value="<?php echo $_GET['model'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="panel">Panel</label>
+            <input type="text" name="panel" id="panel" placeholder="Panel type" value="<?php echo $_GET['panel'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="refreshRate">Refresh Rate</label>
+            <select name="refreshRate" id="refreshRate">
+              <option value="" <?php echo (($_GET['refreshRate'] ?? '') === '') ? 'selected' : ''; ?>>Any Refresh Rate</option>
+              <option value="165" <?php echo (($_GET['refreshRate'] ?? '') === '165') ? 'selected' : ''; ?>>165 Hz</option>
+              <option value="180" <?php echo (($_GET['refreshRate'] ?? '') === '180') ? 'selected' : ''; ?>>180 Hz</option>
+              <option value="240" <?php echo (($_GET['refreshRate'] ?? '') === '240') ? 'selected' : ''; ?>>240 Hz</option>
             </select>
           </div>
 
           <div class="filter-group">
-            <label for="refresh_rate">Min Refresh Rate (Hz)</label>
-            <select name="refresh_rate" id="refresh_rate">
-              <option value="">Any</option>
-              <option value="60">60 Hz</option>
-              <option value="120">120 Hz</option>
-              <option value="144">144 Hz</option>
-              <option value="165">165 Hz+</option>
+            <label for="resolution">Resolution</label>
+            <input type="text" name="resolution" id="resolution" placeholder="Resolution" value="<?php echo $_GET['resolution'] ?? ''; ?>">
+          </div>
+
+          <div class="filter-group">
+            <label for="stock">Stock</label>
+            <select name="stock" id="stock">
+              <option value="" <?php echo (($_GET['stock'] ?? '') === '') ? 'selected' : ''; ?>>All</option>
+              <option value=">0" <?php echo (($_GET['stock'] ?? '') === '>0') ? 'selected' : ''; ?>>In stock</option>
+              <option value="=0" <?php echo (($_GET['stock'] ?? '') === '=0') ? 'selected' : ''; ?>>Out of stock</option>
             </select>
-          </div>
-
-          <div class="filter-group">
-            <label for="min_price">Min Price (DT)</label>
-            <input type="number" name="price_min" id="min_price" placeholder="0" min="0">
-          </div>
-
-          <div class="filter-group">
-            <label for="max_price">Max Price (DT)</label>
-            <input type="number" name="price_max" id="max_price" placeholder="9999" min="0">
           </div>
 
           <button type="submit" class="filter-btn">Apply Filters</button>
@@ -75,31 +81,11 @@
       <div class="products-section">
      <?php
         require_once "../backend/API/monitorAPI.php";
-        $filters = array();
-        if (!empty($_GET['brand'])) {
-          $filters['brand'] = $_GET['brand'];
-        }
-        $monitors = getAllMonitors($filters);
-        
-        // Client-side filtering for refresh rate and price
-        if (!empty($_GET['refresh_rate']) || !empty($_GET['price_min']) || !empty($_GET['price_max'])) {
-          $monitors = array_filter($monitors, function($item) {
-            if (!empty($_GET['refresh_rate']) && $item['refreshRate'] < $_GET['refresh_rate']) {
-              return false;
-            }
-            if (!empty($_GET['price_min']) && $item['price'] < $_GET['price_min']) {
-              return false;
-            }
-            if (!empty($_GET['price_max']) && $item['price'] > $_GET['price_max']) {
-              return false;
-            }
-            return true;
-          });
-        }
+        $monitors = getAllMonitors($_GET);
         echo '<div class="product-grid">';
         foreach ($monitors as $monitor) {
           $stockClass = $monitor['stock'] > 0 ? 'in-stock' : 'out-of-stock';
-          $stockLabel = $monitor['stock'] > 0 ? 'In Stock' : 'Out of Stock';
+          
           echo '
             <article class="tile-card product-row">
               <div class="product-media">
@@ -112,7 +98,7 @@
                 </div>
                 <p class="product-description">'. htmlspecialchars($monitor['description']) .'</p>
                 <div class="product-meta">
-                  <span class="'. $stockClass .'">'. $stockLabel .'</span>
+                  <span class="'. $stockClass .'">'. $stockClass .'</span>
                   <span class="product-tag">monitor</span>
                 </div>
                 <dl class="product-specs">
